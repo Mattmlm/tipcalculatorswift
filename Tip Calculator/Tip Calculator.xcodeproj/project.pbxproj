@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		847F08841B90EFA600FD8417 /* CurrencyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F08831B90EFA600FD8417 /* CurrencyTextField.swift */; };
 		847F08861B91034300FD8417 /* CurrencyTextFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F08851B91034300FD8417 /* CurrencyTextFieldController.swift */; };
+		849B2D611B952A1D006CEA8A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849B2D601B952A1D006CEA8A /* Constants.swift */; };
+		849B2D631B95999C006CEA8A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849B2D621B95999C006CEA8A /* SettingsViewController.swift */; };
 		84E749CE1B8E7F3100EC5F90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E749CD1B8E7F3100EC5F90 /* AppDelegate.swift */; };
 		84E749D01B8E7F3100EC5F90 /* TipCalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E749CF1B8E7F3100EC5F90 /* TipCalculatorViewController.swift */; };
 		84E749D31B8E7F3100EC5F90 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84E749D11B8E7F3100EC5F90 /* Main.storyboard */; };
@@ -30,6 +32,8 @@
 /* Begin PBXFileReference section */
 		847F08831B90EFA600FD8417 /* CurrencyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyTextField.swift; sourceTree = "<group>"; };
 		847F08851B91034300FD8417 /* CurrencyTextFieldController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyTextFieldController.swift; sourceTree = "<group>"; };
+		849B2D601B952A1D006CEA8A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		849B2D621B95999C006CEA8A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		84E749C81B8E7F3100EC5F90 /* Tip Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tip Calculator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E749CC1B8E7F3100EC5F90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84E749CD1B8E7F3100EC5F90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +64,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		849B2D5F1B952A0D006CEA8A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				849B2D601B952A1D006CEA8A /* Constants.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		84E749BF1B8E7F3100EC5F90 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +93,7 @@
 		84E749CA1B8E7F3100EC5F90 /* Tip Calculator */ = {
 			isa = PBXGroup;
 			children = (
+				849B2D5F1B952A0D006CEA8A /* Utils */,
 				84E749CD1B8E7F3100EC5F90 /* AppDelegate.swift */,
 				84E749CF1B8E7F3100EC5F90 /* TipCalculatorViewController.swift */,
 				84E749D11B8E7F3100EC5F90 /* Main.storyboard */,
@@ -89,6 +102,7 @@
 				84E749CB1B8E7F3100EC5F90 /* Supporting Files */,
 				847F08831B90EFA600FD8417 /* CurrencyTextField.swift */,
 				847F08851B91034300FD8417 /* CurrencyTextFieldController.swift */,
+				849B2D621B95999C006CEA8A /* SettingsViewController.swift */,
 			);
 			path = "Tip Calculator";
 			sourceTree = "<group>";
@@ -218,10 +232,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				849B2D611B952A1D006CEA8A /* Constants.swift in Sources */,
 				847F08841B90EFA600FD8417 /* CurrencyTextField.swift in Sources */,
 				847F08861B91034300FD8417 /* CurrencyTextFieldController.swift in Sources */,
 				84E749D01B8E7F3100EC5F90 /* TipCalculatorViewController.swift in Sources */,
 				84E749CE1B8E7F3100EC5F90 /* AppDelegate.swift in Sources */,
+				849B2D631B95999C006CEA8A /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
