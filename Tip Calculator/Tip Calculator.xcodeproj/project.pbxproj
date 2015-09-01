@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8478057A1B95AD3F001A874C /* NSLocaleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847805791B95AD3F001A874C /* NSLocaleExtensions.swift */; };
 		847F08841B90EFA600FD8417 /* CurrencyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F08831B90EFA600FD8417 /* CurrencyTextField.swift */; };
 		847F08861B91034300FD8417 /* CurrencyTextFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F08851B91034300FD8417 /* CurrencyTextFieldController.swift */; };
 		849B2D611B952A1D006CEA8A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849B2D601B952A1D006CEA8A /* Constants.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		847805791B95AD3F001A874C /* NSLocaleExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLocaleExtensions.swift; sourceTree = "<group>"; };
 		847F08831B90EFA600FD8417 /* CurrencyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyTextField.swift; sourceTree = "<group>"; };
 		847F08851B91034300FD8417 /* CurrencyTextFieldController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyTextFieldController.swift; sourceTree = "<group>"; };
 		849B2D601B952A1D006CEA8A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 			children = (
 				849B2D601B952A1D006CEA8A /* Constants.swift */,
 				849B2D641B95A372006CEA8A /* UIColor+HEX.swift */,
+				847805791B95AD3F001A874C /* NSLocaleExtensions.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				849B2D611B952A1D006CEA8A /* Constants.swift in Sources */,
 				847F08841B90EFA600FD8417 /* CurrencyTextField.swift in Sources */,
 				847F08861B91034300FD8417 /* CurrencyTextFieldController.swift in Sources */,
+				8478057A1B95AD3F001A874C /* NSLocaleExtensions.swift in Sources */,
 				84E749D01B8E7F3100EC5F90 /* TipCalculatorViewController.swift in Sources */,
 				84E749CE1B8E7F3100EC5F90 /* AppDelegate.swift in Sources */,
 				849B2D631B95999C006CEA8A /* SettingsViewController.swift in Sources */,
