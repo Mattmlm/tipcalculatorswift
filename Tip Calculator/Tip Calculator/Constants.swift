@@ -9,3 +9,6 @@
 /*
 *Colors
 */
+
+let kMainColorGreen = "#6FECBF";
+let kBackgroundColorGreen2 = "#61C882";

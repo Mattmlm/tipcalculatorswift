@@ -21,6 +21,11 @@ class TipCalculatorViewController: UIViewController, CurrencyTextFieldDelegate {
         currencyTextFieldDelegate.delegate = self;
         self.billTotalField.becomeFirstResponder();
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated);
+        self.navigationController?.setNavigationBarHidden(true, animated: true);
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
