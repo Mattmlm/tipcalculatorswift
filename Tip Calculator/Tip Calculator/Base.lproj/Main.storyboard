@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zcg-ka-3Wg">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -21,7 +21,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Wyj-9V-bDQ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="50"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -30,13 +31,16 @@
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="Wyj-9V-bDQ"/>
+                                        <exclude reference="Wyj-9V-bDQ"/>
                                     </mask>
                                 </variation>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.43529411764705883" green="0.92549019607843142" blue="0.74901960784313726" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="centerY" secondItem="OnY-DH-7x7" secondAttribute="centerY" constant="268" id="7zk-pr-a9D">
+                                <variation key="heightClass=regular-widthClass=compact" constant="150"/>
+                            </constraint>
                             <constraint firstItem="OnY-DH-7x7" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="91" id="C7T-mv-Gtm">
                                 <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                             </constraint>
@@ -44,15 +48,18 @@
                                 <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                             </constraint>
                             <constraint firstItem="OnY-DH-7x7" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="117" id="cX0-fz-KBd"/>
+                            <constraint firstAttribute="centerX" secondItem="OnY-DH-7x7" secondAttribute="centerX" id="mjh-9q-Ajw"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="OnY-DH-7x7"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="7zk-pr-a9D"/>
                                 <exclude reference="C7T-mv-Gtm"/>
                                 <exclude reference="HJd-Zy-hCY"/>
                                 <exclude reference="cX0-fz-KBd"/>
+                                <exclude reference="mjh-9q-Ajw"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -60,18 +67,38 @@
                                 <include reference="OnY-DH-7x7"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="7zk-pr-a9D"/>
                                 <include reference="C7T-mv-Gtm"/>
                                 <include reference="HJd-Zy-hCY"/>
-                                <include reference="cX0-fz-KBd"/>
+                                <exclude reference="cX0-fz-KBd"/>
+                                <exclude reference="mjh-9q-Ajw"/>
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="zgY-GQ-sfO"/>
                     <connections>
                         <outlet property="billTotalField" destination="OnY-DH-7x7" id="sT3-gW-oC9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="600" y="130.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="a7u-Du-U3h">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="zcg-ka-3Wg" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Npe-W5-Y0C">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="owp-Hi-EAO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="REQ-hG-fa9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-270" y="130.5"/>
         </scene>
     </scenes>
 </document>

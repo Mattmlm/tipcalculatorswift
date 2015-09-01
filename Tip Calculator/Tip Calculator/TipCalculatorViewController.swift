@@ -10,17 +10,16 @@ import UIKit
 
 class TipCalculatorViewController: UIViewController, CurrencyTextFieldDelegate {
 
-    @IBOutlet weak var billTotalField: UITextField!
-    var currencyTextFieldDelegate: CurrencyTextFieldController!
+    @IBOutlet weak var billTotalField: CurrencyTextField!
+    var currencyTextFieldDelegate: CurrencyTextFieldController = CurrencyTextFieldController();
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        currencyTextFieldDelegate = CurrencyTextFieldController();
-        
         billTotalField.delegate = currencyTextFieldDelegate;
         currencyTextFieldDelegate.delegate = self;
+        self.billTotalField.becomeFirstResponder();
     }
 
     override func didReceiveMemoryWarning() {
