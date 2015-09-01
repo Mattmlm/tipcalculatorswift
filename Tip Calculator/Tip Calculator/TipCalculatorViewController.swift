@@ -28,8 +28,7 @@ class TipCalculatorViewController: UIViewController, CurrencyTextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        println("testing delegate");
+    func currencyTextField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String, fieldValue: Float) -> Bool {   
         return true;
     }
 }
