@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		847F08841B90EFA600FD8417 /* CurrencyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F08831B90EFA600FD8417 /* CurrencyTextField.swift */; };
+		847F08861B91034300FD8417 /* CurrencyTextFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F08851B91034300FD8417 /* CurrencyTextFieldController.swift */; };
 		84E749CE1B8E7F3100EC5F90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E749CD1B8E7F3100EC5F90 /* AppDelegate.swift */; };
 		84E749D01B8E7F3100EC5F90 /* TipCalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E749CF1B8E7F3100EC5F90 /* TipCalculatorViewController.swift */; };
 		84E749D31B8E7F3100EC5F90 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84E749D11B8E7F3100EC5F90 /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		847F08831B90EFA600FD8417 /* CurrencyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyTextField.swift; sourceTree = "<group>"; };
+		847F08851B91034300FD8417 /* CurrencyTextFieldController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyTextFieldController.swift; sourceTree = "<group>"; };
 		84E749C81B8E7F3100EC5F90 /* Tip Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tip Calculator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E749CC1B8E7F3100EC5F90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84E749CD1B8E7F3100EC5F90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				84E749D61B8E7F3100EC5F90 /* LaunchScreen.xib */,
 				84E749CB1B8E7F3100EC5F90 /* Supporting Files */,
 				847F08831B90EFA600FD8417 /* CurrencyTextField.swift */,
+				847F08851B91034300FD8417 /* CurrencyTextFieldController.swift */,
 			);
 			path = "Tip Calculator";
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				847F08841B90EFA600FD8417 /* CurrencyTextField.swift in Sources */,
+				847F08861B91034300FD8417 /* CurrencyTextFieldController.swift in Sources */,
 				84E749D01B8E7F3100EC5F90 /* TipCalculatorViewController.swift in Sources */,
 				84E749CE1B8E7F3100EC5F90 /* AppDelegate.swift in Sources */,
 			);
@@ -415,6 +419,7 @@
 				84E749E91B8E7F3100EC5F90 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		84E749EA1B8E7F3100EC5F90 /* Build configuration list for PBXNativeTarget "Tip CalculatorTests" */ = {
 			isa = XCConfigurationList;
@@ -423,6 +428,7 @@
 				84E749EC1B8E7F3100EC5F90 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

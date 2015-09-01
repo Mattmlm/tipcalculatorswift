@@ -8,11 +8,19 @@
 
 import UIKit
 
-class TipCalculatorViewController: UIViewController {
+class TipCalculatorViewController: UIViewController, CurrencyTextFieldDelegate {
 
+    @IBOutlet weak var billTotalField: UITextField!
+    var currencyTextFieldDelegate: CurrencyTextFieldController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        currencyTextFieldDelegate = CurrencyTextFieldController();
+        
+        billTotalField.delegate = currencyTextFieldDelegate;
+        currencyTextFieldDelegate.delegate = self;
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +28,9 @@ class TipCalculatorViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        println("testing delegate");
+        return true;
+    }
 }
 
