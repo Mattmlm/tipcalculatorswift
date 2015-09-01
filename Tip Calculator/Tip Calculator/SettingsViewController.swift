@@ -18,6 +18,7 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     override func viewDidLoad() {
         super.viewDidLoad();
         self.setUpCurrencyPicker();
+        self.updateDefaultLabels();
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -44,10 +45,29 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         self.currencyPickerData = sortedCountryArray;
     }
     
+    func updateDefaultLabels() {
+        let defaults = NSUserDefaults.standardUserDefaults();
+        
+        // Update currency
+        var currencyCode = defaults.stringForKey(kCurrencyCodeDefault);
+        var currencyIndex = defaults.integerForKey(kCurrencyIndexDefault);
+        if (currencyCode == nil) {
+            currencyCode = NSLocale.currentLocale().objectForKey(NSLocaleCurrencyCode) as? String;
+        }
+        currencyDisplayLabel.text = currencyCode;
+        currencyPickerView.selectRow(currencyIndex, inComponent: 0, animated: false);
+    }
+    
     @IBAction func finishSelectingCurrency(sender:UIBarButtonItem) {
         self.currencyPickerView.hidden = true;
         self.currencyPickerToolbar.hidden = true;
-        currencyDisplayLabel.text = currencyPickerData[currencyPickerView.selectedRowInComponent(0)];
+        let selectedIndex = currencyPickerView.selectedRowInComponent(0);
+        let currencyCode = currencyPickerData[selectedIndex];
+        let defaults = NSUserDefaults.standardUserDefaults();
+        defaults.setObject(currencyCode, forKey: kCurrencyCodeDefault);
+        defaults.setInteger(selectedIndex, forKey: kCurrencyIndexDefault);
+        defaults.synchronize();
+        currencyDisplayLabel.text = currencyCode;
     }
     
     @IBAction func currencyLabelSelected(sender: UILabel) {

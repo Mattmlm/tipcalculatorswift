@@ -12,3 +12,6 @@
 
 let kMainColorGreen = "#6FECBF";
 let kBackgroundColorGreen2 = "#61C882";
+
+let kCurrencyCodeDefault = "currencyCodeDefault";
+let kCurrencyIndexDefault = "currencyIndexDefault";
