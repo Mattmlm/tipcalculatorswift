@@ -85,6 +85,7 @@ class TipCalculatorViewController: UIViewController, UICollectionViewDataSource,
     
     func loadDefaultData() {
         let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults();
+        let lastTipPercentage = defaults.objectForKey(kLastTipPercentage);
         
         // Update currency marker
         var numericValue = self.getBillValue(self.billTotalField.text);
@@ -97,10 +98,12 @@ class TipCalculatorViewController: UIViewController, UICollectionViewDataSource,
         self.updateTipCalculations(numericValue, numberOfPeople: 1);
         
         // Update default percentage
-        let tipPercentage = defaults.objectForKey(kTipPercentageDefault);
-        if (tipPercentage != nil) {
-            let row = tipPercentage as! Int;
-            self.tipPercentageToScrollToIndexPath = NSIndexPath(forRow: row, inSection: 0);
+        if (lastTipPercentage == nil) {
+            let tipPercentage = defaults.objectForKey(kTipPercentageDefault);
+            if (tipPercentage != nil) {
+                let row = tipPercentage as! Int;
+                self.tipPercentageToScrollToIndexPath = NSIndexPath(forRow: row, inSection: 0);
+            }
         }
     }
     
@@ -109,7 +112,9 @@ class TipCalculatorViewController: UIViewController, UICollectionViewDataSource,
         defaults.setObject(self.billTotalField.text, forKey: kLastBillTotal);
         let tipIndexPath = self.centerTipPercentageIndexPath();
         if (tipIndexPath != nil) {
-            defaults.setInteger(self.centerTipPercentageIndexPath()!.row, forKey: kLastTipPercentage);
+            defaults.setInteger(tipIndexPath!.row, forKey: kLastTipPercentage);
+        } else {
+            defaults.setInteger(self.tipPercentageToScrollToIndexPath.row, forKey: kLastTipPercentage);
         }
         defaults.setObject(self.numberOfPeopleLabel.text, forKey: kLastBillSplitNumber);
         defaults.synchronize();
