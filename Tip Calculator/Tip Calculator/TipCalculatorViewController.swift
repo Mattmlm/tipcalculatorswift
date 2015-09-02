@@ -66,13 +66,11 @@ class TipCalculatorViewController: UIViewController, UICollectionViewDataSource,
         
         let lastTipPercentage = defaults.integerForKey(kLastTipPercentage);
         let lastBillTotal = defaults.stringForKey(kLastBillTotal);
-        let lastBillSplitNumber = defaults.stringForKey(kLastBillSplitNumber);
         
         // If less than 10 minutes have passed and something has been recorded, set bill total, number of people to split by, and tip percentage to what was last present
         if timeDiff < 600 {
             self.tipPercentageToScrollToIndexPath = NSIndexPath(forRow: lastTipPercentage, inSection: 0);
             self.billTotalField.text = lastBillTotal;
-            self.numberOfPeopleLabel.text = lastBillSplitNumber;
         }
     }
     
@@ -89,14 +87,14 @@ class TipCalculatorViewController: UIViewController, UICollectionViewDataSource,
         let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults();
         
         // Update currency marker
-        let numericValue = CurrencyFormatter.sharedInstance.numberFromString(self.billTotalField.text);
+        var numericValue = self.getBillValue(self.billTotalField.text);
         let defaultCurrencyCode = defaults.stringForKey(kCurrencyCodeDefault);
         if (defaultCurrencyCode != nil) {
             CurrencyFormatter.sharedInstance.locale = NSLocale.getLocaleWithCurrencyCode(defaultCurrencyCode!);
         }
-        let newString = CurrencyFormatter.sharedInstance.stringFromNumber(numericValue!);
+        let newString = CurrencyFormatter.sharedInstance.stringFromNumber(numericValue);
         self.billTotalField.text = newString;
-        self.updateTipCalculations(numericValue!.doubleValue, numberOfPeople: 1);
+        self.updateTipCalculations(numericValue, numberOfPeople: 1);
         
         // Update default percentage
         let tipPercentage = defaults.objectForKey(kTipPercentageDefault);
@@ -118,6 +116,13 @@ class TipCalculatorViewController: UIViewController, UICollectionViewDataSource,
     }
     
     //MARK: Helpers
+    func getBillValue(billValue: String) -> Double {
+        let setToKeep: NSCharacterSet = NSCharacterSet(charactersInString: "0123456789");
+        let setToRemove: NSCharacterSet = setToKeep.invertedSet;
+        let numericOriginalString: NSString = join("", billValue.componentsSeparatedByCharactersInSet(setToRemove));
+        return numericOriginalString.doubleValue / 100;
+    }
+    
     func updateTipCalculations(newBillValue: Double, numberOfPeople: NSNumber) {
         var cellsToUpdate = self.tipCalculatedCollectionView.visibleCells();
         let people = 1;
@@ -153,9 +158,8 @@ class TipCalculatorViewController: UIViewController, UICollectionViewDataSource,
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
             TipCalculatedCollectionViewCell.reuseIdentiferForCell(), forIndexPath: indexPath) as! TipCalculatedCollectionViewCell;
         cell.tipPercentage = indexPath.row;
-        let billTotalNumber = CurrencyFormatter.sharedInstance.numberFromString(self.billTotalField.text);
-        let billTotalDouble = billTotalNumber!.doubleValue;
-        cell.updateCell(billTotalDouble, numberOfPeople: 1);
+        let billTotalNumber = getBillValue(self.billTotalField.text);
+        cell.updateCell(billTotalNumber, numberOfPeople: 1);
 
         return cell;
     }
