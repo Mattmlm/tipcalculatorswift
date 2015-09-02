@@ -8,17 +8,29 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class SettingsViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
     @IBOutlet weak var currencyPickerView: UIPickerView!;
     @IBOutlet weak var currencyDisplayLabel: UILabel!;
     @IBOutlet weak var currencyPickerToolbar: UIToolbar!;
+    @IBOutlet weak var tipPercentageField: UITextField!;
+    @IBOutlet weak var tipPercentageSymbolLabel: UILabel!;
+    
     var currencyPickerData: Array<String> = [];
     
     override func viewDidLoad() {
         super.viewDidLoad();
         self.setUpCurrencyPicker();
-        self.updateDefaultLabels();
+        
+        self.tipPercentageField.delegate = self;
+        
+        // If user taps outside of keyboard, text fields should be deselected
+        let deselectTextFieldTapGesture = UITapGestureRecognizer(target: self, action: "deselectTextField:");
+        self.view.addGestureRecognizer(deselectTextFieldTapGesture);
+        
+        // If user taps percentage label, this should select the percentage field
+        let selectPercentageTapGesture = UITapGestureRecognizer(target: self, action: "selectPercentageField:");
+        self.tipPercentageSymbolLabel.addGestureRecognizer(selectPercentageTapGesture);
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -27,6 +39,8 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         self.navigationController?.setNavigationBarHidden(false, animated: true);
         self.navigationController?.navigationBar.barTintColor = UIColor(hexCode: kMainColorGreen);
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor();
+        
+        self.updateDefaultLabels();
     }
     
     func setUpCurrencyPicker() {
@@ -50,12 +64,20 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         
         // Update currency
         var currencyCode = defaults.stringForKey(kCurrencyCodeDefault);
-        var currencyIndex = defaults.integerForKey(kCurrencyIndexDefault);
+        let currencyIndex = defaults.integerForKey(kCurrencyIndexDefault);
         if (currencyCode == nil) {
             currencyCode = NSLocale.currentLocale().objectForKey(NSLocaleCurrencyCode) as? String;
         }
         currencyDisplayLabel.text = currencyCode;
         currencyPickerView.selectRow(currencyIndex, inComponent: 0, animated: false);
+        
+        // Update tip percentage
+        let tipPercentage = defaults.objectForKey(kTipPercentageDefault);
+        if (tipPercentage == nil) {
+            tipPercentageField.text = "15";
+        } else {
+            tipPercentageField.text = String(tipPercentage as! Int);
+        }
     }
     
     @IBAction func finishSelectingCurrency(sender:UIBarButtonItem) {
@@ -75,6 +97,15 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         self.currencyPickerToolbar.hidden = false;
     }
     
+    //MARK: Gesture handlers
+    func selectPercentageField(tap: UITapGestureRecognizer) {
+        self.tipPercentageField.becomeFirstResponder();
+    }
+    
+    func deselectTextField(tap: UITapGestureRecognizer) {
+        self.tipPercentageField.resignFirstResponder();
+    }
+    
     //MARK: UIPickerViewDataSource
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1;
@@ -88,5 +119,24 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     //MARK: UIPickerViewDelegate
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
         return currencyPickerData[row];
+    }
+    
+    //MARK: UITextFieldDelegate
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        let defaults = NSUserDefaults.standardUserDefaults();
+        var newText = textField.text as NSString
+        newText = newText.stringByReplacingCharactersInRange(range, withString: string);
+        
+        // If Tip percentage field
+        if (textField.isEqual(self.tipPercentageField)) {
+            var newDefaultPercentage = newText.integerValue;
+            newDefaultPercentage = min(newDefaultPercentage, 100);
+            newDefaultPercentage = max(newDefaultPercentage, 0);
+            
+            defaults.setObject(newDefaultPercentage, forKey: kTipPercentageDefault);
+            textField.text = String(newDefaultPercentage);
+        }
+        defaults.synchronize();
+        return false;
     }
 }

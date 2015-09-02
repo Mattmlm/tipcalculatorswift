@@ -11,7 +11,5 @@ import UIKit
 class CurrencyTextField: UITextField {
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        println("Instantiated")
     }
 }

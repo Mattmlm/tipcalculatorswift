@@ -16,6 +16,7 @@ class TipCalculatorViewController: UIViewController, UICollectionViewDataSource,
     @IBOutlet weak var numberOfPeopleView: UIView!
     @IBOutlet weak var numberOfPeopleLabel: UILabel!
     
+    var tipPercentageToScrollToIndexPath: NSIndexPath = NSIndexPath(forRow: 15, inSection: 0);
     var currencyTextFieldDelegate: CurrencyTextFieldController = CurrencyTextFieldController();
     
     override func viewDidLoad() {
@@ -24,6 +25,7 @@ class TipCalculatorViewController: UIViewController, UICollectionViewDataSource,
         
         billTotalField.delegate = currencyTextFieldDelegate;
         currencyTextFieldDelegate.formatter = CurrencyFormatter.sharedInstance;
+        
         currencyTextFieldDelegate.delegate = self;
         self.billTotalField.becomeFirstResponder();
 
@@ -44,6 +46,7 @@ class TipCalculatorViewController: UIViewController, UICollectionViewDataSource,
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews();
+        self.tipCalculatedCollectionView.scrollToItemAtIndexPath(self.tipPercentageToScrollToIndexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: false);
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,15 +56,65 @@ class TipCalculatorViewController: UIViewController, UICollectionViewDataSource,
 
     //MARK: Latest/Default data management
     func loadLatestData() {
+        let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults();
         
+        let lastDate = defaults.objectForKey(kLastCloseDate) as? NSDate;
+        if (lastDate == nil) {
+            return;
+        }
+        let timeDiff:NSTimeInterval = NSDate().timeIntervalSinceDate(lastDate!);
+        
+        let lastTipPercentage = defaults.integerForKey(kLastTipPercentage);
+        let lastBillTotal = defaults.stringForKey(kLastBillTotal);
+        let lastBillSplitNumber = defaults.stringForKey(kLastBillSplitNumber);
+        
+        // If less than 10 minutes have passed and something has been recorded, set bill total, number of people to split by, and tip percentage to what was last present
+        if timeDiff < 600 {
+            self.tipPercentageToScrollToIndexPath = NSIndexPath(forRow: lastTipPercentage, inSection: 0);
+            self.billTotalField.text = lastBillTotal;
+            self.numberOfPeopleLabel.text = lastBillSplitNumber;
+        }
     }
     
     func clearLatestData() {
+        let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults();
         
+        defaults.removeObjectForKey(kLastBillTotal);
+        defaults.removeObjectForKey(kLastTipPercentage);
+        defaults.removeObjectForKey(kLastBillSplitNumber);
+        defaults.synchronize();
     }
     
     func loadDefaultData() {
+        let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults();
         
+        // Update currency marker
+        let numericValue = CurrencyFormatter.sharedInstance.numberFromString(self.billTotalField.text);
+        let defaultCurrencyCode = defaults.stringForKey(kCurrencyCodeDefault);
+        if (defaultCurrencyCode != nil) {
+            CurrencyFormatter.sharedInstance.locale = NSLocale.getLocaleWithCurrencyCode(defaultCurrencyCode!);
+        }
+        let newString = CurrencyFormatter.sharedInstance.stringFromNumber(numericValue!);
+        self.billTotalField.text = newString;
+        self.updateTipCalculations(numericValue!.doubleValue, numberOfPeople: 1);
+        
+        // Update default percentage
+        let tipPercentage = defaults.objectForKey(kTipPercentageDefault);
+        if (tipPercentage != nil) {
+            let row = tipPercentage as! Int;
+            self.tipPercentageToScrollToIndexPath = NSIndexPath(forRow: row, inSection: 0);
+        }
+    }
+    
+    func recordLastSettings() {
+        let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults();
+        defaults.setObject(self.billTotalField.text, forKey: kLastBillTotal);
+        let tipIndexPath = self.centerTipPercentageIndexPath();
+        if (tipIndexPath != nil) {
+            defaults.setInteger(self.centerTipPercentageIndexPath()!.row, forKey: kLastTipPercentage);
+        }
+        defaults.setObject(self.numberOfPeopleLabel.text, forKey: kLastBillSplitNumber);
+        defaults.synchronize();
     }
     
     //MARK: Helpers
@@ -74,13 +127,26 @@ class TipCalculatorViewController: UIViewController, UICollectionViewDataSource,
         }
     }
     
+    func centerTipPercentageIndexPath() -> NSIndexPath? {
+        let visibleCells = self.tipCalculatedCollectionView.visibleCells() as! [UICollectionViewCell];
+        let centerX: CGFloat = self.tipCalculatedCollectionView.contentOffset.x + UIScreen.mainScreen().bounds.size.width/2;
+        let centerRect: CGRect = CGRectMake(centerX, self.tipCalculatedCollectionView.frame.size.height / 2, 1, 1);
+        for cell:UICollectionViewCell in visibleCells {
+            let isCellCenter:Bool = CGRectIntersectsRect(centerRect, cell.frame);
+            if (isCellCenter) {
+                return self.tipCalculatedCollectionView.indexPathForCell(cell)!;
+            }
+        }
+        return nil;
+    }
+    
     //MARK: UICollectionViewDataSource
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1;
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 100;
+        return 101;
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {

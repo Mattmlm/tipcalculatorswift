@@ -13,5 +13,11 @@
 let kMainColorGreen = "#6FECBF";
 let kBackgroundColorGreen2 = "#61C882";
 
+let kLastCloseDate = "lastCloseDate";
+let kLastBillTotal = "lastBillTotal";
+let kLastTipPercentage = "lastTipPercentage";
+let kLastBillSplitNumber = "lastBillSplitNumber";
+
 let kCurrencyCodeDefault = "currencyCodeDefault";
 let kCurrencyIndexDefault = "currencyIndexDefault";
+let kTipPercentageDefault = "tipPercentageDefault";

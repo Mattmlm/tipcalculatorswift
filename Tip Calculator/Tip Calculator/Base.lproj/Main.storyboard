@@ -379,7 +379,7 @@
                                             </mask>
                                         </variation>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kGm-Be-cQG" userLabel="Default Number Of People Field">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kGm-Be-cQG" userLabel="Default Number Of People Field">
                                         <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="51" id="1mQ-IP-f9R"/>
@@ -608,6 +608,8 @@
                         <outlet property="currencyDisplayLabel" destination="zFt-re-b5s" id="7UG-kt-TTG"/>
                         <outlet property="currencyPickerToolbar" destination="5aS-Nq-bTj" id="8vd-Zr-OMY"/>
                         <outlet property="currencyPickerView" destination="yEC-Ok-OJg" id="gKY-RL-PN8"/>
+                        <outlet property="tipPercentageField" destination="jjU-9U-hT9" id="9wN-gz-2JK"/>
+                        <outlet property="tipPercentageSymbolLabel" destination="8RS-Ir-Uz7" id="xJJ-83-cy4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gHX-bT-SiD" userLabel="First Responder" sceneMemberID="firstResponder"/>
