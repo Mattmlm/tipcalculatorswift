@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8478057A1B95AD3F001A874C /* NSLocaleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847805791B95AD3F001A874C /* NSLocaleExtensions.swift */; };
+		8478057C1B9662DD001A874C /* TipCalculatedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8478057B1B9662DD001A874C /* TipCalculatedCollectionViewCell.swift */; };
+		8478057E1B966478001A874C /* TipCalculatedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8478057D1B966478001A874C /* TipCalculatedCollectionViewCell.xib */; };
 		847805801B9666E8001A874C /* CurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8478057F1B9666E8001A874C /* CurrencyFormatter.swift */; };
 		847F08841B90EFA600FD8417 /* CurrencyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F08831B90EFA600FD8417 /* CurrencyTextField.swift */; };
 		847F08861B91034300FD8417 /* CurrencyTextFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F08851B91034300FD8417 /* CurrencyTextFieldController.swift */; };
@@ -34,6 +36,8 @@
 
 /* Begin PBXFileReference section */
 		847805791B95AD3F001A874C /* NSLocaleExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLocaleExtensions.swift; sourceTree = "<group>"; };
+		8478057B1B9662DD001A874C /* TipCalculatedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipCalculatedCollectionViewCell.swift; sourceTree = "<group>"; };
+		8478057D1B966478001A874C /* TipCalculatedCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TipCalculatedCollectionViewCell.xib; sourceTree = "<group>"; };
 		8478057F1B9666E8001A874C /* CurrencyFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyFormatter.swift; sourceTree = "<group>"; };
 		847F08831B90EFA600FD8417 /* CurrencyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyTextField.swift; sourceTree = "<group>"; };
 		847F08851B91034300FD8417 /* CurrencyTextFieldController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyTextFieldController.swift; sourceTree = "<group>"; };
@@ -112,6 +116,8 @@
 				847F08831B90EFA600FD8417 /* CurrencyTextField.swift */,
 				847F08851B91034300FD8417 /* CurrencyTextFieldController.swift */,
 				849B2D621B95999C006CEA8A /* SettingsViewController.swift */,
+				8478057B1B9662DD001A874C /* TipCalculatedCollectionViewCell.swift */,
+				8478057D1B966478001A874C /* TipCalculatedCollectionViewCell.xib */,
 			);
 			path = "Tip Calculator";
 			sourceTree = "<group>";
@@ -223,6 +229,7 @@
 			files = (
 				84E749D31B8E7F3100EC5F90 /* Main.storyboard in Resources */,
 				84E749D81B8E7F3100EC5F90 /* LaunchScreen.xib in Resources */,
+				8478057E1B966478001A874C /* TipCalculatedCollectionViewCell.xib in Resources */,
 				84E749D51B8E7F3100EC5F90 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,6 +252,7 @@
 				849B2D611B952A1D006CEA8A /* Constants.swift in Sources */,
 				847F08841B90EFA600FD8417 /* CurrencyTextField.swift in Sources */,
 				847F08861B91034300FD8417 /* CurrencyTextFieldController.swift in Sources */,
+				8478057C1B9662DD001A874C /* TipCalculatedCollectionViewCell.swift in Sources */,
 				8478057A1B95AD3F001A874C /* NSLocaleExtensions.swift in Sources */,
 				84E749D01B8E7F3100EC5F90 /* TipCalculatorViewController.swift in Sources */,
 				84E749CE1B8E7F3100EC5F90 /* AppDelegate.swift in Sources */,
