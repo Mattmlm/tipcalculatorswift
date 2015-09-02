@@ -10,7 +10,7 @@ import UIKit
 
 class TipCalculatorViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CurrencyTextFieldDelegate {
 
-    @IBOutlet weak var billTotalField: CurrencyTextField!
+    @IBOutlet weak var billTotalField: UITextField!
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var tipCalculatedCollectionView: UICollectionView!
     @IBOutlet weak var numberOfPeopleView: UIView!
