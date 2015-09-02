@@ -51,7 +51,7 @@ class TipCalculatorViewController: UIViewController, UICollectionViewDataSource,
         // Dispose of any resources that can be recreated.
     }
 
-    //MARK: Helpers
+    //MARK: Latest/Default data management
     func loadLatestData() {
         
     }
@@ -62,6 +62,16 @@ class TipCalculatorViewController: UIViewController, UICollectionViewDataSource,
     
     func loadDefaultData() {
         
+    }
+    
+    //MARK: Helpers
+    func updateTipCalculations(newBillValue: Double, numberOfPeople: NSNumber) {
+        var cellsToUpdate = self.tipCalculatedCollectionView.visibleCells();
+        let people = 1;
+        for cell in cellsToUpdate {
+            var tipCell:TipCalculatedCollectionViewCell = (cell as? TipCalculatedCollectionViewCell)!;
+            tipCell.updateCell(newBillValue, numberOfPeople: people);
+        }
     }
     
     //MARK: UICollectionViewDataSource
@@ -91,7 +101,8 @@ class TipCalculatorViewController: UIViewController, UICollectionViewDataSource,
     }
     
     //MARK: CurrencyTextFieldDelegate
-    func currencyTextField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String, fieldValue: Float) -> Bool {   
+    func currencyTextField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String, fieldValue: Double) -> Bool {
+        self.updateTipCalculations(fieldValue, numberOfPeople: 1);
         return true;
     }
 }

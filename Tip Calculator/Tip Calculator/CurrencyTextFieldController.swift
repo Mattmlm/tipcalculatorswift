@@ -11,7 +11,7 @@
 import UIKit
 
 protocol CurrencyTextFieldDelegate {
-    func currencyTextField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String, fieldValue: Float) -> Bool
+    func currencyTextField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String, fieldValue: Double) -> Bool
 }
 
 class CurrencyTextFieldController: NSObject, UITextFieldDelegate {
@@ -45,8 +45,8 @@ class CurrencyTextFieldController: NSObject, UITextFieldDelegate {
             numericString = numericString.substringToIndex(numericString.length - 1);
         }
         
-        let stringValue: Float = numericString.floatValue / 100;
-        var stringValueDecimalNumber: NSNumber = NSDecimalNumber(float: stringValue);
+        let stringValue: Double = numericString.doubleValue / 100;
+        var stringValueDecimalNumber: NSNumber = NSDecimalNumber(double: stringValue);
         newTextFieldString = formatter.stringFromNumber(stringValueDecimalNumber)!;
         
         textField.text = newTextFieldString as String;
