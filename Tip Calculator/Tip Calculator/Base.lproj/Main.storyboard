@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zcg-ka-3Wg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zcg-ka-3Wg">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--Tip Calculator View Controller-->
@@ -431,7 +432,7 @@
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=compact">
                                             <mask key="constraints">
-                                                <include reference="DfD-Kb-M1V"/>
+                                                <exclude reference="DfD-Kb-M1V"/>
                                             </mask>
                                         </variation>
                                     </label>
@@ -463,6 +464,9 @@
                                     <constraint firstItem="Ocz-dw-qdA" firstAttribute="top" secondItem="cQA-Wy-erT" secondAttribute="bottom" constant="23" id="p9D-Zw-hQ0"/>
                                     <constraint firstItem="cQA-Wy-erT" firstAttribute="centerY" secondItem="jjU-9U-hT9" secondAttribute="centerY" constant="-0.5" id="ppB-L1-2Ja"/>
                                     <constraint firstItem="Ocz-dw-qdA" firstAttribute="leading" secondItem="xgb-Qp-tdH" secondAttribute="leading" id="qG6-UR-Ax3"/>
+                                    <constraint firstItem="zFt-re-b5s" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xgb-Qp-tdH" secondAttribute="trailing" constant="219.5" id="z9Z-MC-uGI">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="15"/>
+                                    </constraint>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="subviews">
@@ -477,22 +481,23 @@
                                     </mask>
                                     <mask key="constraints">
                                         <exclude reference="Gws-Mj-gsY"/>
-                                        <exclude reference="h78-jF-eKx"/>
-                                        <exclude reference="kVY-HU-BIj"/>
-                                        <exclude reference="oOW-tI-1jf"/>
-                                        <exclude reference="p9D-Zw-hQ0"/>
-                                        <exclude reference="qG6-UR-Ax3"/>
                                         <exclude reference="HiI-dG-wIS"/>
                                         <exclude reference="X3l-m1-rwu"/>
                                         <exclude reference="jGp-Ue-oIh"/>
                                         <exclude reference="ppB-L1-2Ja"/>
-                                        <exclude reference="h3s-io-22N"/>
+                                        <exclude reference="oOW-tI-1jf"/>
+                                        <exclude reference="p9D-Zw-hQ0"/>
+                                        <exclude reference="qG6-UR-Ax3"/>
+                                        <exclude reference="HUh-iP-B0Z"/>
+                                        <exclude reference="a19-bR-nxu"/>
                                         <exclude reference="LUb-N4-pfI"/>
                                         <exclude reference="kVS-kI-5VI"/>
-                                        <exclude reference="a19-bR-nxu"/>
+                                        <exclude reference="h3s-io-22N"/>
                                         <exclude reference="LQz-LZ-ZtH"/>
                                         <exclude reference="Wpp-Vs-gfW"/>
-                                        <exclude reference="HUh-iP-B0Z"/>
+                                        <exclude reference="z9Z-MC-uGI"/>
+                                        <exclude reference="h78-jF-eKx"/>
+                                        <exclude reference="kVY-HU-BIj"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
@@ -508,22 +513,23 @@
                                     </mask>
                                     <mask key="constraints">
                                         <include reference="Gws-Mj-gsY"/>
-                                        <include reference="h78-jF-eKx"/>
-                                        <include reference="kVY-HU-BIj"/>
-                                        <include reference="oOW-tI-1jf"/>
-                                        <include reference="p9D-Zw-hQ0"/>
-                                        <include reference="qG6-UR-Ax3"/>
                                         <include reference="HiI-dG-wIS"/>
                                         <include reference="X3l-m1-rwu"/>
                                         <include reference="jGp-Ue-oIh"/>
                                         <include reference="ppB-L1-2Ja"/>
-                                        <include reference="h3s-io-22N"/>
+                                        <include reference="oOW-tI-1jf"/>
+                                        <include reference="p9D-Zw-hQ0"/>
+                                        <include reference="qG6-UR-Ax3"/>
+                                        <include reference="HUh-iP-B0Z"/>
+                                        <include reference="a19-bR-nxu"/>
                                         <include reference="LUb-N4-pfI"/>
                                         <include reference="kVS-kI-5VI"/>
-                                        <include reference="a19-bR-nxu"/>
+                                        <include reference="h3s-io-22N"/>
                                         <include reference="LQz-LZ-ZtH"/>
                                         <include reference="Wpp-Vs-gfW"/>
-                                        <include reference="HUh-iP-B0Z"/>
+                                        <include reference="z9Z-MC-uGI"/>
+                                        <include reference="h78-jF-eKx"/>
+                                        <include reference="kVY-HU-BIj"/>
                                     </mask>
                                 </variation>
                             </view>

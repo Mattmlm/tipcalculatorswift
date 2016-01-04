@@ -16,7 +16,8 @@ class SettingsViewController: UIViewController, UITextFieldDelegate, UIPickerVie
     @IBOutlet weak var tipPercentageField: UITextField!;
     @IBOutlet weak var tipPercentageSymbolLabel: UILabel!;
     
-    var currencyPickerData: Array<String> = [];
+    var currentSelectedCurrencyPickerRow = 0;
+    var countryNamesAndCodes: [(String, String)] = [];
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -54,22 +55,38 @@ class SettingsViewController: UIViewController, UITextFieldDelegate, UIPickerVie
         self.currencyDisplayLabel.addGestureRecognizer(selectCurrencyDisplayLabel);
         
         // Setup Currency options data
-        let unsortedCountryNamesArray:[String] = NSLocale.commonISOCurrencyCodes() ;
-        let sortedCountryArray = unsortedCountryNamesArray.sort(<);
-        self.currencyPickerData = sortedCountryArray;
+        let currentLocale = NSLocale.currentLocale();
+        let countryCodesArray = NSLocale.ISOCountryCodes();
+        for countryCode in countryCodesArray {
+            if let countryName = currentLocale.displayNameForKey(NSLocaleCountryCode, value: countryCode) {
+                countryNamesAndCodes.append((countryName, countryCode));
+            }
+        }
+        
+        countryNamesAndCodes = countryNamesAndCodes.sort({
+            $0.0.compare($1.0) == .OrderedAscending
+        });
+        
+        // After sorting, determine selected currency
+        let currentCountryName = currentLocale.displayNameForKey(NSLocaleCountryCode, value: currentLocale.objectForKey(NSLocaleCountryCode)!);
+        for (index, (countryName, _)) in countryNamesAndCodes.enumerate() {
+            if countryName == currentCountryName {
+                currentSelectedCurrencyPickerRow = index;
+            }
+        }
     }
     
     func updateDefaultLabels() {
         let defaults = NSUserDefaults.standardUserDefaults();
         
         // Update currency
-        var currencyCode = defaults.stringForKey(kCurrencyCodeDefault);
-        let currencyIndex = defaults.integerForKey(kCurrencyIndexDefault);
-        if (currencyCode == nil) {
-            currencyCode = NSLocale.currentLocale().objectForKey(NSLocaleCurrencyCode) as? String;
+        if let countryCode = defaults.stringForKey(kCountryCodeDefault) {
+            let index = defaults.integerForKey(kCountryIndexDefault);
+            currentSelectedCurrencyPickerRow = index
+            currencyDisplayLabel.text = countryNamesAndCodes[index].0;
+        } else {
+            currencyDisplayLabel.text = NSLocale.currentLocale().objectForKey(NSLocaleCurrencyCode) as? String;
         }
-        currencyDisplayLabel.text = currencyCode;
-        currencyPickerView.selectRow(currencyIndex, inComponent: 0, animated: false);
         
         // Update tip percentage
         let tipPercentage = defaults.objectForKey(kTipPercentageDefault);
@@ -84,16 +101,18 @@ class SettingsViewController: UIViewController, UITextFieldDelegate, UIPickerVie
         self.currencyPickerView.hidden = true;
         self.currencyPickerToolbar.hidden = true;
         let selectedIndex = currencyPickerView.selectedRowInComponent(0);
-        let currencyCode = currencyPickerData[selectedIndex];
+        let countryName = countryNamesAndCodes[selectedIndex].0;
+        let currencyCode = countryNamesAndCodes[selectedIndex].1;
         let defaults = NSUserDefaults.standardUserDefaults();
-        defaults.setObject(currencyCode, forKey: kCurrencyCodeDefault);
-        defaults.setInteger(selectedIndex, forKey: kCurrencyIndexDefault);
+        defaults.setObject(currencyCode, forKey: kCountryCodeDefault);
+        defaults.setInteger(selectedIndex, forKey: kCountryIndexDefault);
         defaults.synchronize();
-        currencyDisplayLabel.text = currencyCode;
+        currencyDisplayLabel.text = countryName;
     }
     
     @IBAction func currencyLabelSelected(sender: UILabel) {
         self.currencyPickerView.hidden = false;
+        currencyPickerView.selectRow(currentSelectedCurrencyPickerRow, inComponent: 0, animated: false);
         self.currencyPickerToolbar.hidden = false;
     }
     
@@ -113,12 +132,12 @@ class SettingsViewController: UIViewController, UITextFieldDelegate, UIPickerVie
     
     // returns the # of rows in each component..
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return self.currencyPickerData.count;
+        return countryNamesAndCodes.count;
     }
     
     //MARK: UIPickerViewDelegate
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return currencyPickerData[row];
+        return countryNamesAndCodes[row].0;
     }
     
     //MARK: UITextFieldDelegate

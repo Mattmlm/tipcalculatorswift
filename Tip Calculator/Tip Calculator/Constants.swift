@@ -18,6 +18,6 @@ let kLastBillTotal = "lastBillTotal";
 let kLastTipPercentage = "lastTipPercentage";
 let kLastBillSplitNumber = "lastBillSplitNumber";
 
-let kCurrencyCodeDefault = "currencyCodeDefault";
-let kCurrencyIndexDefault = "currencyIndexDefault";
+let kCountryCodeDefault = "countryCodeDefault";
+let kCountryIndexDefault = "countryIndexDefault";
 let kTipPercentageDefault = "tipPercentageDefault";

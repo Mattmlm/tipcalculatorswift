@@ -89,9 +89,8 @@ class TipCalculatorViewController: UIViewController, UICollectionViewDataSource,
         
         // Update currency marker
         let numericValue = self.getBillValue(self.billTotalField.text!);
-        let defaultCurrencyCode = defaults.stringForKey(kCurrencyCodeDefault);
-        if (defaultCurrencyCode != nil) {
-            CurrencyFormatter.sharedInstance.locale = NSLocale.getLocaleWithCurrencyCode(defaultCurrencyCode!);
+        if let defaultCountryCode = defaults.stringForKey(kCountryCodeDefault) {
+            CurrencyFormatter.sharedInstance.locale = NSLocale.getLocaleWithCountryCode(defaultCountryCode);
         }
         let newString = CurrencyFormatter.sharedInstance.stringFromNumber(numericValue);
         self.billTotalField.text = newString;
