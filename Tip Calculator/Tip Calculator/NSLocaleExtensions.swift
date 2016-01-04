@@ -9,6 +9,13 @@
 import UIKit
 
 extension NSLocale {
+    class func getLocaleWithCountryCode(countryCode: String) -> NSLocale {
+        let localeInfo: [String: String] = [ NSLocaleCountryCode : countryCode
+        ]
+        let localeIdentifier = NSLocale.localeIdentifierFromComponents(localeInfo);
+        let locale:NSLocale = NSLocale(localeIdentifier: localeIdentifier);
+        return locale;
+    }
     class func getLocaleWithCurrencyCode(currencyCode: String) -> NSLocale {
         let localeInfo: [String: String] = [ NSLocaleCurrencyCode : currencyCode,
             NSLocaleLanguageCode : NSLocale.preferredLanguages()[0]
