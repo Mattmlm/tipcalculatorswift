@@ -10,9 +10,11 @@ import UIKit
 
 extension NSLocale {
     class func getLocaleWithCurrencyCode(currencyCode: String) -> NSLocale {
-        var localeInfo = NSDictionary(objectsAndKeys: currencyCode, NSLocaleCurrencyCode, NSLocale.preferredLanguages()[0], NSLocaleLanguageCode);
-        var localeIdentifier = NSLocale.localeIdentifierFromComponents(localeInfo as [NSObject : AnyObject]);
-        var locale:NSLocale = NSLocale(localeIdentifier: localeIdentifier);
+        let localeInfo: [String: String] = [ currencyCode : NSLocaleCurrencyCode,
+            NSLocale.preferredLanguages()[0]: NSLocaleLanguageCode
+        ]
+        let localeIdentifier = NSLocale.localeIdentifierFromComponents(localeInfo);
+        let locale:NSLocale = NSLocale(localeIdentifier: localeIdentifier);
         return locale;
     }
     class func getAllCountryLocalesArray() -> Array<String> {
@@ -25,7 +27,7 @@ extension NSLocale {
                 unsortedCountryArray.append(displayNameString!)
             }
         }
-        let sortedCountryArray = sorted(unsortedCountryArray, <)
+        let sortedCountryArray = unsortedCountryArray.sort(<)
         return sortedCountryArray;
     }
     class func getAllCountryCodeNamesDictionary() -> NSDictionary {
@@ -39,7 +41,7 @@ extension NSLocale {
                 countries.append(displayNameString!);
             }
         }
-        var codeForCountryDictionary = NSDictionary(objects: countryCodes, forKeys: countries);
+        let codeForCountryDictionary = NSDictionary(objects: countryCodes, forKeys: countries);
         return codeForCountryDictionary;
     }
 }

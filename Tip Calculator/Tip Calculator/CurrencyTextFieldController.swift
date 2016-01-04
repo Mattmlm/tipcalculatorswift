@@ -29,16 +29,16 @@ class CurrencyTextFieldController: NSObject, UITextFieldDelegate {
     }
 
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        var isBackspace = string.isEmpty;
-        var originalString = textField.text;
-        var newString = string;
+        let isBackspace = string.isEmpty;
+        let originalString = textField.text;
+        let newString = string;
         var newTextFieldString: NSString;
         
         //  Get non-numeric set
-        var setToKeep: NSCharacterSet = NSCharacterSet(charactersInString: "0123456789");
-        var setToRemove: NSCharacterSet = setToKeep.invertedSet;
-        var numericOriginalString = join("", originalString.componentsSeparatedByCharactersInSet(setToRemove));
-        var numericNewString = join("", newString.componentsSeparatedByCharactersInSet(setToRemove));
+        let setToKeep: NSCharacterSet = NSCharacterSet(charactersInString: "0123456789");
+        let setToRemove: NSCharacterSet = setToKeep.invertedSet;
+        let numericOriginalString = originalString!.componentsSeparatedByCharactersInSet(setToRemove).joinWithSeparator("");
+        let numericNewString = newString.componentsSeparatedByCharactersInSet(setToRemove).joinWithSeparator("");
         
         var numericString: NSString = numericOriginalString.stringByAppendingString(numericNewString);
         if (isBackspace) {
@@ -46,7 +46,7 @@ class CurrencyTextFieldController: NSObject, UITextFieldDelegate {
         }
         
         let stringValue: Double = numericString.doubleValue / 100;
-        var stringValueDecimalNumber: NSNumber = NSDecimalNumber(double: stringValue);
+        let stringValueDecimalNumber: NSNumber = NSDecimalNumber(double: stringValue);
         newTextFieldString = formatter.stringFromNumber(stringValueDecimalNumber)!;
         
         textField.text = newTextFieldString as String;

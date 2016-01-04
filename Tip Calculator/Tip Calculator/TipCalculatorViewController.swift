@@ -29,7 +29,7 @@ class TipCalculatorViewController: UIViewController, UICollectionViewDataSource,
         currencyTextFieldDelegate.delegate = self;
         self.billTotalField.becomeFirstResponder();
 
-        var tipCellNib = UINib(nibName: TipCalculatedCollectionViewCell.nibNameForCell(), bundle: nil);
+        let tipCellNib = UINib(nibName: TipCalculatedCollectionViewCell.nibNameForCell(), bundle: nil);
         self.tipCalculatedCollectionView.registerNib(tipCellNib, forCellWithReuseIdentifier: TipCalculatedCollectionViewCell.reuseIdentiferForCell());
         self.tipCalculatedCollectionView.delegate = self;
         self.tipCalculatedCollectionView.dataSource = self;
@@ -88,7 +88,7 @@ class TipCalculatorViewController: UIViewController, UICollectionViewDataSource,
         let lastTipPercentage = defaults.objectForKey(kLastTipPercentage);
         
         // Update currency marker
-        var numericValue = self.getBillValue(self.billTotalField.text);
+        let numericValue = self.getBillValue(self.billTotalField.text!);
         let defaultCurrencyCode = defaults.stringForKey(kCurrencyCodeDefault);
         if (defaultCurrencyCode != nil) {
             CurrencyFormatter.sharedInstance.locale = NSLocale.getLocaleWithCurrencyCode(defaultCurrencyCode!);
@@ -124,21 +124,21 @@ class TipCalculatorViewController: UIViewController, UICollectionViewDataSource,
     func getBillValue(billValue: String) -> Double {
         let setToKeep: NSCharacterSet = NSCharacterSet(charactersInString: "0123456789");
         let setToRemove: NSCharacterSet = setToKeep.invertedSet;
-        let numericOriginalString: NSString = join("", billValue.componentsSeparatedByCharactersInSet(setToRemove));
+        let numericOriginalString: NSString = billValue.componentsSeparatedByCharactersInSet(setToRemove).joinWithSeparator("");
         return numericOriginalString.doubleValue / 100;
     }
     
     func updateTipCalculations(newBillValue: Double, numberOfPeople: NSNumber) {
-        var cellsToUpdate = self.tipCalculatedCollectionView.visibleCells();
+        let cellsToUpdate = self.tipCalculatedCollectionView.visibleCells();
         let people = 1;
         for cell in cellsToUpdate {
-            var tipCell:TipCalculatedCollectionViewCell = (cell as? TipCalculatedCollectionViewCell)!;
+            let tipCell:TipCalculatedCollectionViewCell = (cell as? TipCalculatedCollectionViewCell)!;
             tipCell.updateCell(newBillValue, numberOfPeople: people);
         }
     }
     
     func centerTipPercentageIndexPath() -> NSIndexPath? {
-        let visibleCells = self.tipCalculatedCollectionView.visibleCells() as! [UICollectionViewCell];
+        let visibleCells = self.tipCalculatedCollectionView.visibleCells() ;
         let centerX: CGFloat = self.tipCalculatedCollectionView.contentOffset.x + UIScreen.mainScreen().bounds.size.width/2;
         let centerRect: CGRect = CGRectMake(centerX, self.tipCalculatedCollectionView.frame.size.height / 2, 1, 1);
         for cell:UICollectionViewCell in visibleCells {
@@ -163,7 +163,7 @@ class TipCalculatorViewController: UIViewController, UICollectionViewDataSource,
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
             TipCalculatedCollectionViewCell.reuseIdentiferForCell(), forIndexPath: indexPath) as! TipCalculatedCollectionViewCell;
         cell.tipPercentage = indexPath.row;
-        let billTotalNumber = getBillValue(self.billTotalField.text);
+        let billTotalNumber = getBillValue(self.billTotalField.text!);
         cell.updateCell(billTotalNumber, numberOfPeople: 1);
 
         return cell;

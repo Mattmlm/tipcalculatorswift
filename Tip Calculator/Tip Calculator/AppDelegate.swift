@@ -51,8 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         defaults.synchronize();
         
         // Record the tip settings when app is closed
-        var navigationController = self.window?.rootViewController as? UINavigationController;
-        var tipController = navigationController?.visibleViewController as? TipCalculatorViewController;
+        let navigationController = self.window?.rootViewController as? UINavigationController;
+        let tipController = navigationController?.visibleViewController as? TipCalculatorViewController;
         tipController?.recordLastSettings();
     }
 }

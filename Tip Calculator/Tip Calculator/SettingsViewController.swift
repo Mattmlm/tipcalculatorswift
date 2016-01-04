@@ -50,12 +50,12 @@ class SettingsViewController: UIViewController, UITextFieldDelegate, UIPickerVie
         currencyPickerView.dataSource = self;
         
         // Setup UX interactions to select currency setting
-        var selectCurrencyDisplayLabel: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "currencyLabelSelected:");
+        let selectCurrencyDisplayLabel: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "currencyLabelSelected:");
         self.currencyDisplayLabel.addGestureRecognizer(selectCurrencyDisplayLabel);
         
         // Setup Currency options data
-        let unsortedCountryNamesArray:[String] = NSLocale.commonISOCurrencyCodes() as! [String];
-        let sortedCountryArray = sorted(unsortedCountryNamesArray, <);
+        let unsortedCountryNamesArray:[String] = NSLocale.commonISOCurrencyCodes() ;
+        let sortedCountryArray = unsortedCountryNamesArray.sort(<);
         self.currencyPickerData = sortedCountryArray;
     }
     
@@ -117,14 +117,14 @@ class SettingsViewController: UIViewController, UITextFieldDelegate, UIPickerVie
     }
     
     //MARK: UIPickerViewDelegate
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return currencyPickerData[row];
     }
     
     //MARK: UITextFieldDelegate
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         let defaults = NSUserDefaults.standardUserDefaults();
-        var newText = textField.text as NSString
+        var newText = textField.text! as NSString
         newText = newText.stringByReplacingCharactersInRange(range, withString: string);
         
         // If Tip percentage field
