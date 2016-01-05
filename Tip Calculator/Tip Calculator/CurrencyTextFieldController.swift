@@ -17,7 +17,7 @@ protocol CurrencyTextFieldDelegate {
 class CurrencyTextFieldController: NSObject, UITextFieldDelegate {
     
     var delegate: CurrencyTextFieldDelegate?
-    var formatter: NSNumberFormatter = NSNumberFormatter();
+    var formatter: CurrencyFormatter = CurrencyFormatter.sharedInstance
     
     override init() {
         super.init();
@@ -47,7 +47,7 @@ class CurrencyTextFieldController: NSObject, UITextFieldDelegate {
         
         let stringValue: Double = numericString.doubleValue / 100;
         let stringValueDecimalNumber: NSNumber = NSDecimalNumber(double: stringValue);
-        newTextFieldString = formatter.stringFromNumber(stringValueDecimalNumber)!;
+        newTextFieldString = formatter.stringFromNumberWithoutCode(stringValueDecimalNumber)!;
         
         textField.text = newTextFieldString as String;
         delegate?.currencyTextField(textField, shouldChangeCharactersInRange: range, replacementString: string, fieldValue: stringValue);

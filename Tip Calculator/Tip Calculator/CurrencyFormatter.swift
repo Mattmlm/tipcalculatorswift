@@ -30,4 +30,9 @@ public class CurrencyFormatter: NSNumberFormatter {
         }
         return Static.instance
     }
+    
+    func stringFromNumberWithoutCode(number: NSNumber) -> String? {
+        let toTrimCharacterSet = NSMutableCharacterSet.letterCharacterSet();
+        return stringFromNumber(number)?.stringByTrimmingCharactersInSet(toTrimCharacterSet);
+    }
 }

@@ -28,7 +28,7 @@ class TipCalculatedCollectionViewCell : UICollectionViewCell {
         let tipCalculated: Double = self.tipPercentage.doubleValue * 0.01 * billTotal / Double(numberOfPeople);
         let totalCalculated: Double = (self.tipPercentage.doubleValue * 0.01 + 1) * billTotal / Double(numberOfPeople);
         self.tipPercentageLabel.text = self.tipPercentage.stringValue + "%";
-        self.tipCalculatedValueLabel.text = CurrencyFormatter.sharedInstance.stringFromNumber(tipCalculated)! + ",";
-        self.totalCalculatedValueLabel.text = CurrencyFormatter.sharedInstance.stringFromNumber(totalCalculated);
+        self.tipCalculatedValueLabel.text = CurrencyFormatter.sharedInstance.stringFromNumberWithoutCode(tipCalculated)! + ",";
+        self.totalCalculatedValueLabel.text = CurrencyFormatter.sharedInstance.stringFromNumberWithoutCode(totalCalculated);
     }
 }

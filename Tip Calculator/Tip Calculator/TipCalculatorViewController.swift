@@ -92,7 +92,7 @@ class TipCalculatorViewController: UIViewController, UICollectionViewDataSource,
         if let defaultCountryCode = defaults.stringForKey(kCountryCodeDefault) {
             CurrencyFormatter.sharedInstance.locale = NSLocale.getLocaleWithCountryCode(defaultCountryCode);
         }
-        let newString = CurrencyFormatter.sharedInstance.stringFromNumber(numericValue);
+        let newString = CurrencyFormatter.sharedInstance.stringFromNumberWithoutCode(numericValue);
         self.billTotalField.text = newString;
         self.updateTipCalculations(numericValue, numberOfPeople: 1);
         
