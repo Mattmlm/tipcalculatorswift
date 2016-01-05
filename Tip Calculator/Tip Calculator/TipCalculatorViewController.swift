@@ -18,6 +18,7 @@ class TipCalculatorViewController: UIViewController, UICollectionViewDataSource,
     
     var tipPercentageToScrollToIndexPath: NSIndexPath = NSIndexPath(forRow: 15, inSection: 0);
     var currencyTextFieldDelegate: CurrencyTextFieldController = CurrencyTextFieldController();
+    var tipPercentageHasBeenLoaded = false;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +47,10 @@ class TipCalculatorViewController: UIViewController, UICollectionViewDataSource,
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews();
-        self.tipCalculatedCollectionView.scrollToItemAtIndexPath(self.tipPercentageToScrollToIndexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: false);
+        if (!tipPercentageHasBeenLoaded) {
+            self.tipCalculatedCollectionView.scrollToItemAtIndexPath(self.tipPercentageToScrollToIndexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: false);
+            tipPercentageHasBeenLoaded = true;
+        }
     }
 
     override func didReceiveMemoryWarning() {
