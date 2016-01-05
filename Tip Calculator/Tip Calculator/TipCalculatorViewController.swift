@@ -98,8 +98,7 @@ class TipCalculatorViewController: UIViewController, UICollectionViewDataSource,
         
         // Update default percentage
         if (lastTipPercentage == nil) {
-            let tipPercentage = defaults.objectForKey(kTipPercentageDefault);
-            if (tipPercentage != nil) {
+            if let tipPercentage = defaults.objectForKey(kTipPercentageDefault) {
                 let row = tipPercentage as! Int;
                 self.tipPercentageToScrollToIndexPath = NSIndexPath(forRow: row, inSection: 0);
             }

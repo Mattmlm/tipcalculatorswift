@@ -80,7 +80,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate, UIPickerVie
         let defaults = NSUserDefaults.standardUserDefaults();
         
         // Update currency
-        if let countryCode = defaults.stringForKey(kCountryCodeDefault) {
+        if defaults.stringForKey(kCountryCodeDefault) != nil {
             let index = defaults.integerForKey(kCountryIndexDefault);
             currentSelectedCurrencyPickerRow = index
             currencyDisplayLabel.text = countryNamesAndCodes[index].0;
