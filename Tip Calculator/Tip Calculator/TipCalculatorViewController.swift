@@ -182,5 +182,20 @@ class TipCalculatorViewController: UIViewController, UICollectionViewDataSource,
         self.updateTipCalculations(fieldValue, numberOfPeople: 1);
         return true;
     }
+    
+    //MARK: IBActions
+    @IBAction func clearButtonPressed(sender: AnyObject) {
+        let stringValueDecimalNumber: NSNumber = NSDecimalNumber(double: 0);
+        let newTextFieldString = CurrencyFormatter.sharedInstance.stringFromNumberWithoutCode(stringValueDecimalNumber)!;
+        self.billTotalField.text = newTextFieldString;
+        self.numberOfPeopleLabel.text = "1";
+        self.updateTipCalculations(0, numberOfPeople: 1);
+        if let tipPercentage = NSUserDefaults.standardUserDefaults().objectForKey(kTipPercentageDefault) {
+            let row = tipPercentage as! Int;
+            self.tipPercentageToScrollToIndexPath = NSIndexPath(forRow: row, inSection: 0);
+            self.tipCalculatedCollectionView.scrollToItemAtIndexPath(self.tipPercentageToScrollToIndexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: false);
+        }
+    }
+
 }
 
