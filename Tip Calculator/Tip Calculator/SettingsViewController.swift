@@ -85,7 +85,9 @@ class SettingsViewController: UIViewController, UITextFieldDelegate, UIPickerVie
             currentSelectedCurrencyPickerRow = index
             currencyDisplayLabel.text = countryNamesAndCodes[index].0;
         } else {
-            currencyDisplayLabel.text = NSLocale.currentLocale().objectForKey(NSLocaleCurrencyCode) as? String;
+            let currentLocale = NSLocale.currentLocale();
+            let currentCountryName = currentLocale.displayNameForKey(NSLocaleCountryCode, value: currentLocale.objectForKey(NSLocaleCountryCode)!);
+            currencyDisplayLabel.text = currentCountryName;
         }
         
         // Update tip percentage
